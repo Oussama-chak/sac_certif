@@ -15,7 +15,7 @@ interface AuthResponse {
 export class AuthService {
   
 
-  private signinurl = "http://147.93.59.184/api/v1/auth/signin";
+  private signinurl = "http://147.93.59.184:8008/api/v1/auth/signin";
   private readonly TOKEN_KEY = 'auth_token';
   private readonly USER_DATA_KEY = 'user_data';
   
