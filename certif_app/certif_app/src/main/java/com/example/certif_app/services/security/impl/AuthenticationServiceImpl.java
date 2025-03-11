@@ -23,28 +23,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final JwtService jwtService;
 
 
-    @Override
-    public JwtAuthenticationResponse SignUp(SignUpRequest request) {
-        // Set default role to USER if no role is provided
-        //Role role = request.getRole() != null ? request.getRole() : Role.USER;
-
-        // Create the user wiath the default role
-        /*Role role = request.getRole() != null ? request.getRole() : Role.USER;*/
-        var user= User.builder() .firstName(request.getFirstName())
-                .lastName(request.getLastName())
-                .password(passwordEncoder.encode(request.getPassword()))
-                .email(request.getUsername()).build();
-
-        // Save the user to the database
-        userRepository.save(user);
-        // Generate JWT token for the new user
-        var jwt = jwtService.generateToken(user);
-
-        // Return the JWT token in the response
-        return JwtAuthenticationResponse.builder().token(jwt).build();
-
-
-    }
+    
 
     @Override
     public JwtAuthenticationResponse Signin(SigninRequest request)
