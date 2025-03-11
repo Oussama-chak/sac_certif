@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysqlcont
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: sac_certif
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql  # Ensures data persistence
+    healthcheck:  # ✅ Add health check
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5    
+
+  backend:
+    build: 
+      context: ./certif_app/certif_app  # The folder where your backend source code is
+      dockerfile: Dockerfile  # The Dockerfile for your backend
+    container_name: backend_service
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqlcont:3306/sac_certif
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: 123456
+    ports:
+      - "8008:8008"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./certiscan/certiscan  # The folder where your Angular project is
+      dockerfile: Dockerfile  # The Dockerfile for your frontend
+    container_name: frontend_service
+    ports:
+      - "4100:4100"
+    depends_on:
+      - backend
+volumes:
+  mysql_data:

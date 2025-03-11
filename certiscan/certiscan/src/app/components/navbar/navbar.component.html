@@ -1,0 +1,27 @@
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<nav class="navbar">
+  <!-- Logo -->
+  <div class="logo">
+    <a href="https://www.sac-consulting.com" target="_blank"><img src="../../../assets/logo.png" alt="Logo"></a>
+  </div>
+
+  <!-- Menu for large screens -->
+  <div class="menu">
+    <button class="menu-btn download-btn" (click)="navigatetodownload()">Vérifier</button>
+    <button class="menu-btn generate-btn" (click)="navigatetogenerate()">Générer</button>
+  </div>
+  
+  <!-- Hamburger for small screens -->
+  <div class="hamburger" (click)="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" [class.show]="isMenuOpen">
+    <button class="btn generate-btn" (click)="navigatetogenerate()">Générer</button>
+    <button class="btn download-btn" (click)="navigatetodownload()">Vérifier</button>
+  </div>
+</nav>

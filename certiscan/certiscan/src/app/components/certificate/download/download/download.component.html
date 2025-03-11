@@ -1,0 +1,29 @@
+<app-navbar></app-navbar><br><br>
+<div class="form-container">
+  <form [formGroup]="verifForm" (ngSubmit)="onSubmit()">
+    <h2>Vérifier Certificat</h2>
+    <div class="form-group">
+      <label for="certificatenumber">Numéro de certificat</label>
+      <input
+        id="certificatenumber"
+        type="text"
+        formControlName="certificateNumber"
+        placeholder="Entrer le numéro de votre certificat"
+        [ngClass]="{ 'is-invalid': certificateNumber?.invalid && certificateNumber?.touched }"
+      />
+      <div class="error" *ngIf="certificateNumber?.invalid && certificateNumber?.touched">
+        <small *ngIf="certificateNumber?.errors?.['required']">Le Numéro de certificat est obligatoire</small>
+      </div>
+    </div>
+
+    <button type="submit" class="btn">
+      Vérifier
+    </button>
+    <div *ngIf="generationMessage" class="message">
+      <p>{{ generationMessage }}</p>
+    </div>
+    <div class="form-error" *ngIf="verifForm.invalid && submitted">
+      <p>Veuillez remplir le champ obligatoire avant de soumettre le formulaire.</p>
+    </div>
+  </form>
+</div>

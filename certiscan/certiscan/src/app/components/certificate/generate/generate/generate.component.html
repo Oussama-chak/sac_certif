@@ -1,0 +1,135 @@
+<app-navbar></app-navbar>
+
+<div class="certificate-wrapper">
+  <div class="form-container">
+    <h2>Générer Certificat</h2>
+    <br>
+    
+    <form (ngSubmit)="onSubmit()" #certificateForm="ngForm">
+      <div class="form-grid">
+        <div class="input-group">
+          <label for="firstName">Nom</label>
+          <div class="input-wrapper">
+            <i class="icon-user"></i>
+            <input 
+              type="text" 
+              id="firstName" 
+              [(ngModel)]="certificateData.firstName" 
+              name="firstName" 
+              required 
+              placeholder="Entrez le nom"
+            />
+          </div>
+          
+        </div>
+
+        <div class="input-group">
+          <label for="lastName">Prénom</label>
+          <div class="input-wrapper">
+            <i class="icon-user"></i>
+            <input 
+              type="text" 
+              id="lastName" 
+              [(ngModel)]="certificateData.lastName" 
+              name="lastName" 
+              required 
+              placeholder="Entrez le prénom"
+            />
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="title">Titre</label>
+          <div class="input-wrapper">
+            <i class="icon-badge"></i>
+            <input 
+              type="text" 
+              id="title" 
+              [(ngModel)]="certificateData.title" 
+              name="title" 
+              required 
+              placeholder=" titre de la formation"
+            />
+          </div>
+        </div>
+
+        
+        <div class="input-group">
+          <label for="cin">CIN</label>
+          <div class="input-wrapper">
+            <i class="icon-id-card"></i>
+            <input 
+              type="number" 
+              id="cin" 
+              [(ngModel)]="certificateData.cin" 
+              name="cin" 
+              required 
+              placeholder="Numéro de carte d'identité"
+            />
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="date">Date</label>
+          <div class="input-wrapper">
+            <i class="icon-calendar"></i>
+            <input 
+              type="date" 
+              id="date" 
+              [(ngModel)]="certificateData.date" 
+              name="date" 
+              required 
+            />
+          </div>
+        </div>
+
+        <div class="input-group full-width">
+          <label for="instructor">Formateur</label>
+          <div class="input-wrapper">
+            <i class="icon-teacher"></i>
+            <input 
+              type="text" 
+              id="instructor" 
+              [(ngModel)]="certificateData.instructor" 
+              name="instructor" 
+              required 
+              placeholder="Nom du formateur"
+            />
+          </div>
+        </div>
+      </div><br>
+
+      <button 
+        type="submit" 
+        [disabled]="!certificateForm.valid" 
+        class="submit-btn"
+      >
+        Générer Certificat
+       </button><br><br>
+
+       
+    </form>
+    <div class="input-group">
+      <label class="file-upload">
+        <input type="file" id="pdfInput" accept="application/pdf" (change)="onFileSelected($event)">
+        <span class="file-label">
+          <i class="file-icon">&#128196;</i>  <!-- Unicode paper icon -->
+          Choisir un fichier PDF
+        </span>
+        <span class="file-name" id="fileName">Aucun fichier sélectionné</span>
+      </label>
+    </div>
+    
+    <button class="submit-btn" (click)="uploadtemplate()" >Ajouter template</button>
+    <div *ngIf="templatemessage" class="success-message">
+      {{templatemessage}}
+    </div>
+    
+
+    <div *ngIf="generationMessage" class="success-message">
+      {{ generationMessage }}
+    </div>
+  </div>
+</div>
+
+

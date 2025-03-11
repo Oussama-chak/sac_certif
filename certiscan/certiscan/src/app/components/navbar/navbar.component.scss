@@ -1,0 +1,137 @@
+/* General styles */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #f5f5f5;
+}
+
+.h2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.5rem;
+  color: #007bff;
+}
+
+/* Navbar styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #ffffff, #034a74);
+  padding: 15px 30px;
+  color: white;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.menu {
+  display: flex;
+  gap: 20px;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1rem;
+  cursor: pointer;
+  position: relative;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.menu-btn:hover {
+  color: #aca3a3;
+}
+
+.menu-btn::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #aca3a3;
+  transition: width 0.3s ease;
+}
+
+.menu-btn:hover::after {
+  width: 100%;
+}
+
+.menu-btn.active {
+  color: #007bff;
+}
+
+.menu-btn.active::after {
+  width: 100%;
+}
+
+/* Hamburger menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.hamburger span {
+  background-color: white;
+  height: 3px;
+  width: 25px;
+  border-radius: 2px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Mobile menu */
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  gap: 15px;
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background-color: #ffffff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  max-width: 250px;
+  width: calc(100% - 40px);
+}
+
+.mobile-menu.show {
+  display: flex;
+}
+
+.mobile-menu button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  color: #04486e;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.mobile-menu button:hover {
+  background-color: #04486e;
+  color: #fff;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .menu {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .mobile-menu button {
+    padding: 12px 20px;
+    font-size: 1.2rem;
+  }
+}
